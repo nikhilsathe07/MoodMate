@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { format, subDays, startOfDay } from 'date-fns';
 import { supabase } from '../lib/supabase';

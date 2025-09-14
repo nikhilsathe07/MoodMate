@@ -1,4 +1,3 @@
-import React from 'react';
 import { Heart, Smile, Frown, Meh, Zap, Angry } from 'lucide-react';
 
 interface MoodResultProps {

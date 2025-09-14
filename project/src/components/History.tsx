@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import { Search, Edit3, Trash2, Filter } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -52,21 +52,23 @@ export default function History() {
     }
   };
 
-  const filterEntries = () => {
-    let filtered = entries;
+ const filterEntries = () => {
+  let filtered = entries;
 
-    if (searchTerm) {
-      filtered = filtered.filter(entry =>
-        entry.content.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
+  if (searchTerm) {
+    filtered = filtered.filter(entry =>
+      entry.content
+        ? entry.content.toLowerCase().includes(searchTerm.toLowerCase())
+        : false
+    );
+  }
 
-    if (selectedMood) {
-      filtered = filtered.filter(entry => entry.mood === selectedMood);
-    }
+  if (selectedMood) {
+    filtered = filtered.filter(entry => entry.mood === selectedMood);
+  }
 
-    setFilteredEntries(filtered);
-  };
+  setFilteredEntries(filtered);
+};
 
   const handleEdit = async (id: string) => {
     if (!editContent.trim()) return;
@@ -131,7 +133,7 @@ export default function History() {
               className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
             />
           </div>
-          
+
           <div className="relative">
             <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <select
@@ -140,7 +142,7 @@ export default function History() {
               className="pl-10 pr-8 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
             >
               <option value="">All moods</option>
-              {moods.map(mood => (
+              {moods.map((mood) => (
                 <option key={mood} value={mood} className="capitalize">
                   {mood}
                 </option>
@@ -155,15 +157,20 @@ export default function History() {
         {filteredEntries.length === 0 ? (
           <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700">
             <p className="text-gray-500 dark:text-gray-400">
-              {entries.length === 0 ? "No journal entries yet. Start writing!" : "No entries match your search."}
+              {entries.length === 0
+                ? "No journal entries yet. Start writing!"
+                : "No entries match your search."}
             </p>
           </div>
         ) : (
-          filteredEntries.map((entry) => (
-            <div key={entry.id} className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700">
+          filteredEntries.slice(0, 10).map((entry) => (
+            <div
+              key={entry.id}
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700"
+            >
               <div className="flex justify-between items-start mb-4">
                 <div className="text-sm text-gray-500 dark:text-gray-400">
-                  {format(new Date(entry.created_at), 'PPP p')}
+                  {format(new Date(entry.created_at), "PPP p")}
                 </div>
                 <div className="flex space-x-2">
                   <button

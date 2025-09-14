@@ -1,4 +1,4 @@
-import React from 'react';
+
 import MoodChart from '../components/MoodChart';
 import StatsPie from '../components/StatsPie';
 import { BarChart3, TrendingUp, Calendar, Heart } from 'lucide-react';
