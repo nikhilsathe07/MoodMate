@@ -16,6 +16,7 @@ export async function analyzeMood(text: string): Promise<MoodResult> {
       body: JSON.stringify({ text }),
     });
 
+//check if response is ok
     if (!response.ok) {
       throw new Error(`Backend API error: ${response.statusText}`);
     }
