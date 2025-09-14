@@ -10,7 +10,8 @@ app.use(cors());
 app.use(express.json());
 
 const HF_API_KEY = process.env.HF_API_KEY;
-const HF_MODEL = "distilbert-base-uncased-finetuned-sst-2-english"; // model endpoint
+// const HF_MODEL = "distilbert-base-uncased-finetuned-sst-2-english"; // model endpoint
+const HF_MODEL = "j-hartmann/emotion-english-distilroberta-base";
 
 if (!HF_API_KEY) {
   console.error("❌ HF_API_KEY not found in .env");
@@ -25,7 +26,8 @@ app.post("/analyze", async (req, res) => {
     console.log("📩 Incoming text:", text);
 
     const response = await fetch(
-      "https://router.huggingface.co/hf-inference/models/distilbert/distilbert-base-uncased-finetuned-sst-2-english",
+      // "https://router.huggingface.co/hf-inference/models/distilbert/distilbert-base-uncased-finetuned-sst-2-english",
+      `https://api-inference.huggingface.co/models/${HF_MODEL}`,
       
       {
         method: "POST",
