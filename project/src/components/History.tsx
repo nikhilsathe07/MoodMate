@@ -184,12 +184,17 @@ export default function History() {
                   {format(new Date(entry.created_at), "PPP p")}
                 </div>
                 <div className="flex space-x-2">
-                  <button
+                  {/* Entities edit button */}
+
+
+                  {/* <button
                     onClick={() => startEdit(entry)}
                     className="p-2 text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                   >
                     <Edit3 className="w-4 h-4" />
-                  </button>
+                  </button> */}
+
+                  
                   <button
                     onClick={() => handleDelete(entry.id)}
                     className="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"

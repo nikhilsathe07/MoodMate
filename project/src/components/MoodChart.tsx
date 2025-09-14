@@ -43,9 +43,9 @@ export default function MoodChart() {
   const moodToValue = {
     sad: 1,
     negative: 2,
-    anxious: 3,
+    sadness: 3,
     neutral: 4,
-    angry: 3,
+    anger: 3,
     excited: 6,
     grateful: 7,
     happy: 8,
@@ -84,11 +84,11 @@ export default function MoodChart() {
             const date = format(new Date(entry.created_at), "yyyy-MM-dd");
             let mood = (entry.mood || "neutral").toLowerCase();
             // Map known variations
-            if (mood === "sadness") mood = "sad";
-            if (mood === "positive") mood = "positive";
-            if (mood === "negative") mood = "negative";
-            if (mood === "disgust") mood = "disgust";
-            if (mood === "joy") mood = "joy";
+            // if (mood === "sadness") mood = "sad";
+            if (mood === "POSITIVE") mood = "positive";
+            if (mood === "NEGATIVE") mood = "negative";
+            // if (mood === "disgust") mood = "disgust";
+            // if (mood === "joy") mood = "joy";
             const moodValue =
               moodToValue[mood as keyof typeof moodToValue] || 4;
 

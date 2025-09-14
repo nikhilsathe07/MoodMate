@@ -19,19 +19,19 @@ interface MoodStats {
 }
 
 const moodColors: Record<string, string> = {
-  happy: "#F59E0B", // Yellow
-  sad: "#3B82F6", // Blue
-  anxious: "#F97316", // Orange
-  angry: "#EF4444", // Red
-  excited: "#EC4899", // Pink
-  grateful: "#8B5CF6", // Purple
-  neutral: "#4B5563", // Darker gray
-  positive: "#10B981", // Green
-  negative: "#DC2626", // Dark red
-  sadness: "#3B82F6", // Map to sad
-  disgust: "#047857", // Dark green, distinct
-  joy: "#FBBF24", // Bright yellow, distinct
-  unknown: "#D1D5DB", // Light gray
+  happy: "#FFD93D", // Warm Yellow
+  sad: "#3B82F6", // Calm Blue
+  fear: "#F97316", // Deep Orange
+  anger: "#DC2626", // Strong Red
+  excited: "#E11D48", // Vibrant Pink-Red
+  grateful: "#9333EA", // Rich Purple
+  neutral: "#6B7280", // Medium Gray
+  positive: "#10B981", // Emerald Green
+  negative: "#991B1B", // Dark Crimson
+  sadness: "#2563EB", // Deeper Blue (distinct from neutral sadness)
+  disgust: "#065F46", // Deep Teal Green
+  joy: "#FACC15", // Bright Golden
+  unknown: "#9CA3AF", // Soft Gray
 };
 
 export default function StatsPie() {
@@ -71,6 +71,9 @@ export default function StatsPie() {
           if (mood === "sadness") mood = "sad";
           if (mood === "joy") mood = "joy";
           if (mood === "disgust") mood = "disgust";
+          if (mood === "positive") mood = "positive";
+          if (mood === "negative") mood = "negative";
+          if (mood === "anger") mood = "anger";
           acc[mood] = (acc[mood] || 0) + 1;
           return acc;
         }, {}) || {};

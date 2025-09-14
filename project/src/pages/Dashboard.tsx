@@ -10,8 +10,9 @@ export default function Dashboard() {
         <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
           Mood Analytics
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Discover patterns in your emotional well-being and track your journey over time.
+        <p className="text-xl text-gray-700 dark:text-black-300 max-w-3xl mx-auto text-center leading-relaxed">
+          Discover patterns in your emotional well-being and track your journey
+          over time.
         </p>
       </div>
 
@@ -20,7 +21,9 @@ export default function Dashboard() {
         <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-purple-100 text-sm font-medium">Total Entries</p>
+              <p className="text-purple-100 text-sm font-medium">
+                Total Entries
+              </p>
               <p className="text-2xl font-bold">--</p>
             </div>
             <BarChart3 className="w-8 h-8 text-purple-200" />
