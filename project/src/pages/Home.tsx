@@ -15,15 +15,18 @@ export default function Home() {
         <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
           Welcome to Your Journal
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Express your thoughts and feelings. Our AI will help you understand your emotional patterns and provide personalized insights.
+        <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto text-center leading-relaxed">
+          ✨ Express your thoughts and feelings. Our AI helps you discover
+          emotional patterns and offers personalized insights for a better you.
         </p>
       </div>
 
       <EntryForm onEntryCreated={handleEntryCreated} />
 
       <div key={refreshKey}>
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Your Entries</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+          Your Entries
+        </h2>
         <History />
       </div>
     </div>

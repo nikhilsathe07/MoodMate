@@ -23,7 +23,18 @@ export default function History() {
   const [editContent, setEditContent] = useState('');
   const { user } = useAuth();
 
-  const moods = ['happy', 'sad', 'anxious', 'angry', 'excited', 'grateful', 'neutral', 'positive', 'negative'];
+  // const moods = ['happy', 'sad', 'anxious', 'angry', 'excited', 'grateful', 'neutral', 'positive', 'negative'];
+  const moods = [
+    "happy",
+    "sad",
+    "anxious",
+    "angry",
+    "excited",
+    "grateful",
+    "neutral",
+    "positive",
+    "negative",
+  ];
 
   useEffect(() => {
     if (user) {
@@ -90,7 +101,7 @@ export default function History() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this entry?')) return;
+    if (!confirm("Are you sure you want to delete this entry?")) return;
 
     try {
       const { error } = await supabase
