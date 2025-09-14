@@ -74,8 +74,8 @@ export default function MoodChart() {
       if (error) throw error;
 
       // Log unique moods for debugging
-      const uniqueMoods = [...new Set(entries?.map((entry) => entry.mood))];
-      console.log("Unique moods in MoodChart:", uniqueMoods);
+      // const uniqueMoods = [...new Set(entries?.map((entry) => entry.mood))];
+      // console.log("Unique moods in MoodChart:", uniqueMoods);
 
       // Group by date and calculate average mood
       const moodByDate =
@@ -92,9 +92,9 @@ export default function MoodChart() {
             const moodValue =
               moodToValue[mood as keyof typeof moodToValue] || 4;
 
-            console.log(
-              `Processing entry - Date: ${date}, Mood: ${mood}, Value: ${moodValue}, Confidence: ${entry.confidence}`
-            );
+            // console.log(
+            //   `Processing entry - Date: ${date}, Mood: ${mood}, Value: ${moodValue}, Confidence: ${entry.confidence}`
+            // );
 
             if (!acc[date]) {
               acc[date] = { total: 0, count: 0 };
@@ -121,7 +121,7 @@ export default function MoodChart() {
         });
       }
 
-      console.log("MoodChart data:", moodData);
+      // console.log("MoodChart data:", moodData);
       setData(moodData);
     } catch (error) {
       console.error("Error fetching mood data:", error);
