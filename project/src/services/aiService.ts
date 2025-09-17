@@ -1,4 +1,4 @@
-const BE_URL = import.meta.env.BE_URL || "http://localhost:3007/Analyze";
+const VITE_BE_URL = import.meta.env.BE_URL 
 
 export interface MoodResult {
   mood: string;
@@ -12,7 +12,7 @@ export async function analyzeMood(text: string): Promise<MoodResult> {
   }
 
   try {
-    const response = await fetch(`${BE_URL}`, {
+    const response = await fetch(`${VITE_BE_URL}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text }),
