@@ -1,4 +1,4 @@
-const VITE_BE_URL = import.meta.env.BE_URL 
+const VITE_BE_URL = import.meta.env.VITE_BE_URL;
 
 export interface MoodResult {
   mood: string;
