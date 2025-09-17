@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import { format, isSameDay } from 'date-fns';
+import { format } from 'date-fns';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import 'react-calendar/dist/Calendar.css';
@@ -18,17 +18,18 @@ export default function CalendarView() {
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
 
-  const moodColors = {
-    happy: 'bg-yellow-400',
-    sad: 'bg-blue-400',
-    anxious: 'bg-orange-400',
-    angry: 'bg-red-400',
-    excited: 'bg-pink-400',
-    grateful: 'bg-purple-400',
-    neutral: 'bg-gray-400',
-    positive: 'bg-green-400',
-    negative: 'bg-red-500'
-  };
+   const moodColors = {
+     disgust: "bg-teal-400",
+     surprise: "bg-purple-400",
+     fear: "bg-orange-500",
+     sad: "bg-blue-400",
+     joy: "bg-yellow-500",
+     sadness: "bg-blue-600",
+     anger: "bg-red-400",
+     neutral: "bg-gray-400",
+     POSITIVE: "bg-green-400",
+     NEGATIVE: "bg-red-500",
+   };
 
   useEffect(() => {
     if (user) {
@@ -121,7 +122,7 @@ export default function CalendarView() {
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
           Mood Calendar
         </h3>
-        
+
         <div className="calendar-container">
           <Calendar
             onChange={(date) => setSelectedDate(date as Date)}
@@ -135,7 +136,9 @@ export default function CalendarView() {
           {Object.entries(moodColors).map(([mood, color]) => (
             <div key={mood} className="flex items-center space-x-1 text-xs">
               <div className={`w-2 h-2 rounded-full ${color}`}></div>
-              <span className="text-gray-600 dark:text-gray-400 capitalize">{mood}</span>
+              <span className="text-gray-600 dark:text-gray-400 capitalize">
+                {mood}
+              </span>
             </div>
           ))}
         </div>
@@ -144,9 +147,9 @@ export default function CalendarView() {
       {/* Selected Date Entries */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          Entries for {format(selectedDate, 'PPP')}
+          Entries for {format(selectedDate, "PPP")}
         </h3>
-        
+
         <div className="space-y-4 max-h-96 overflow-y-auto">
           {selectedEntries.length === 0 ? (
             <p className="text-gray-500 dark:text-gray-400 text-center py-8">
@@ -154,15 +157,21 @@ export default function CalendarView() {
             </p>
           ) : (
             selectedEntries.map((entry) => (
-              <div key={entry.id} className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+              <div
+                key={entry.id}
+                className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg"
+              >
                 <div className="flex justify-between items-start mb-2">
-                  <div className={`px-2 py-1 rounded text-xs font-medium ${
-                    moodColors[entry.mood as keyof typeof moodColors] || 'bg-gray-400'
-                  } text-white`}>
+                  <div
+                    className={`px-2 py-1 rounded text-xs font-medium ${
+                      moodColors[entry.mood as keyof typeof moodColors] ||
+                      "bg-gray-400"
+                    } text-white`}
+                  >
                     {entry.mood}
                   </div>
                   <span className="text-xs text-gray-500 dark:text-gray-400">
-                    {format(new Date(entry.created_at), 'h:mm a')}
+                    {format(new Date(entry.created_at), "h:mm a")}
                   </span>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">
@@ -177,60 +186,70 @@ export default function CalendarView() {
         </div>
       </div>
 
-      <style jsx>{`
-        .custom-calendar {
-          width: 100%;
-          background: transparent;
-          border: none;
-          font-family: inherit;
-        }
-        
-        .custom-calendar .react-calendar__tile {
-          background: transparent;
-          border: 1px solid transparent;
-          color: inherit;
-          padding: 0.75rem 0.25rem;
-        }
-        
-        .custom-calendar .react-calendar__tile:enabled:hover,
-        .custom-calendar .react-calendar__tile:enabled:focus {
-          background-color: rgba(147, 51, 234, 0.1);
-        }
-        
-        .custom-calendar .react-calendar__tile--active {
-          background: rgb(147, 51, 234) !important;
-          color: white;
-        }
-        
-        .custom-calendar .react-calendar__tile--now {
-          background: rgba(147, 51, 234, 0.2);
-        }
-        
-        .custom-calendar .react-calendar__month-view__weekdays {
-          text-transform: uppercase;
-          font-weight: 600;
-          font-size: 0.75rem;
-          color: rgb(107, 114, 128);
-        }
-        
-        .custom-calendar .react-calendar__navigation {
-          margin-bottom: 1rem;
-        }
-        
-        .custom-calendar .react-calendar__navigation button {
-          background: rgba(147, 51, 234, 0.1);
-          border: none;
-          color: inherit;
-          font-size: 1rem;
-          padding: 0.5rem;
-          border-radius: 0.5rem;
-        }
-        
-        .custom-calendar .react-calendar__navigation button:enabled:hover,
-        .custom-calendar .react-calendar__navigation button:enabled:focus {
-          background: rgba(147, 51, 234, 0.2);
-        }
-      `}</style>
+      <style>{`
+  .custom-calendar {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+  }
+
+  /* Days */
+  .custom-calendar .react-calendar__tile {
+    background: transparent;
+    border-radius: 0.5rem;
+    padding: 0.75rem 0.25rem;
+    color: inherit;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  .custom-calendar .react-calendar__tile:enabled:hover {
+    background: rgba(147, 51, 234, 0.08);
+  }
+
+  /* Active day */
+  .custom-calendar .react-calendar__tile--active {
+    background: rgb(147, 51, 234) !important;
+    color: #fff !important;
+    font-weight: 600;
+  }
+
+  /* Today */
+  .custom-calendar .react-calendar__tile--now {
+    background: rgba(147, 51, 234, 0.15);
+    border: 1px solid rgba(147, 51, 234, 0.3);
+  }
+
+  /* Weekday headers */
+  .custom-calendar .react-calendar__month-view__weekdays {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: rgb(107, 114, 128);
+    letter-spacing: 0.05em;
+  }
+
+  /* Navigation */
+  .custom-calendar .react-calendar__navigation {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .custom-calendar .react-calendar__navigation button {
+    background: rgba(147, 51, 234, 0.08);
+    border: none;
+    color: inherit;
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s ease;
+  }
+
+  .custom-calendar .react-calendar__navigation button:enabled:hover {
+    background: rgba(147, 51, 234, 0.15);
+  }
+`}</style>
     </div>
   );
 }

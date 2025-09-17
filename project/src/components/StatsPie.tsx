@@ -19,11 +19,12 @@ interface MoodStats {
 }
 
 const moodColors: Record<string, string> = {
-  happy: "#FFD93D", // Warm Yellow
+  // happy: "#FFD93D", // Warm Yellow
   sad: "#3B82F6", // Calm Blue
+  surprise: "#A855F7", // Bright Purple
   fear: "#F97316", // Deep Orange
   anger: "#DC2626", // Strong Red
-  excited: "#E11D48", // Vibrant Pink-Red
+  // excited: "#E11D48", // Vibrant Pink-Red
   grateful: "#9333EA", // Rich Purple
   neutral: "#6B7280", // Medium Gray
   positive: "#10B981", // Emerald Green
