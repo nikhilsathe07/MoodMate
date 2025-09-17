@@ -1,3 +1,5 @@
+const BE_URL = import.meta.env.BE_URL || "http://localhost:3007/Analyze";
+
 export interface MoodResult {
   mood: string;
   confidence: number;
@@ -10,7 +12,7 @@ export async function analyzeMood(text: string): Promise<MoodResult> {
   }
 
   try {
-    const response = await fetch("http://localhost:3007/analyze", {
+    const response = await fetch(`${BE_URL}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text }),
