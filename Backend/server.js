@@ -18,12 +18,16 @@ if (!HF_API_KEY) {
   process.exit(1);
 }
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ message: "MoodMate Server is healthy" });
+});
+
 app.post("/analyze", async (req, res) => {
   try {
     const { text } = req.body;
     if (!text) return res.status(400).json({ error: "Text is required" });
 
-    console.log("📩 Incoming text:", text);
+    // console.log("📩 Incoming text:", text);
 
     const response = await fetch(
       // "https://router.huggingface.co/hf-inference/models/distilbert/distilbert-base-uncased-finetuned-sst-2-english",
@@ -40,8 +44,8 @@ app.post("/analyze", async (req, res) => {
     );
 
     const raw = await response.text(); // always read text first for debugging
-    console.log("📡 HF API Status:", response.status);
-    console.log("📡 HF API Raw Response:", raw);
+    // console.log("📡 HF API Status:", response.status);
+    // console.log("📡 HF API Raw Response:", raw);
 
     if (!response.ok) {
       return res.status(response.status).json({ error: raw });
